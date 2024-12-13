@@ -120,7 +120,7 @@ def upload_to_s3(prompt, url):
 
     rand_tag = ''.join(random.choices(string.ascii_uppercase +
                              string.digits, k=10))
-    final_file = f'{prompt.replace(" ", "_")}_{rand_tag}.jpeg'
+    final_file = f'{prompt[:512].replace(" ", "_")}_{rand_tag}.jpeg'
     encoded = urllib.parse.quote(final_file)
     print(f'Final file {final_file}, Encoded url: {encoded}')
     s3_client.upload_file(comp_local_file, 'dallepics', f'dalle/{final_file}')
